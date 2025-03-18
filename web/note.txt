@@ -1,0 +1,17 @@
+https://www.digitalocean.com/community/tutorials/how-to-build-go-executables-for-multiple-platforms-on-ubuntu-20-04
+
+go run main.go
+go build main.go
+
+go get -u gorm.io/gorm
+go get -u gorm.io/driver/postgres
+
+
+migrate -database "mysql://user:password@tcp(127.0.0.1:3306)/dbname" -path migrations version
+migrate -database "mysql://user:password@tcp(127.0.0.1:3306)/dbname" -path migrations down 1
+migrate -database "mysql://user:password@tcp(127.0.0.1:3306)/dbname" -path migrations up 2
+go install -tags 'mysql' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+go get -u github.com/golang-migrate/migrate/v4
+migrate create -ext sql -dir migrations -seq create_users_table
+
+migrate -database "mysql://user:password@tcp(127.0.0.1:3306)/dbname" -path migrations goto 1

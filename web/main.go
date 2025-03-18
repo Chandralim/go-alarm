@@ -1,8 +1,10 @@
 package main
 
 import (
-	"api/controllers/c_internal"
+	"go/web/controllers/c_internal"
+	"go/web/middlewares"
 
+	// "./controllers/internal"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,9 +28,15 @@ import (
 
 func main() {
 	router := gin.Default()
-	r_internal := router.Group("/internal")
+	router.Use(middlewares.CorsHeader())
 
-	r_internal.GET("/login", c_internal.Login)
+	router.POST("/internal/login", c_internal.Login)
+
+	// r_internal := router.Group("/internal")
+	// r_internal.GET("/login", c_internal.Login)
+
+	// r_main := router.Group("/main")
+	// r_main.GET("/login", c_main.Login)
 
 	// router.GET("/albums", getAlbums)
 
