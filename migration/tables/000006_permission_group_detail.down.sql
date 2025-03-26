@@ -1,0 +1,1 @@
+drop table if exists `permission_group_detail`
