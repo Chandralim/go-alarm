@@ -1,9 +1,9 @@
-package commands
+package main
 
 import (
 	"flag"
 	"fmt"
-	"mygo/migration/commands"
+	"mygo/app/console/commands"
 )
 
 func main() {

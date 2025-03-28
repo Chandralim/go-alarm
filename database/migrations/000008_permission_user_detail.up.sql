@@ -9,8 +9,8 @@ create table `permission_user_detail` (
     `updated_at` timestamp null
 ) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
 alter table `permission_user_detail`
-add constraint `permission_user_detail_user_id_foreign` foreign key (`user_id`) references `is_users` (`id`) on delete restrict on update cascade;
+add constraint `permission_user_detail_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete restrict on update cascade;
 alter table `permission_user_detail`
-add constraint `permission_user_detail_created_user_foreign` foreign key (`created_user`) references `is_users` (`id`) on delete restrict on update cascade;
+add constraint `permission_user_detail_created_user_foreign` foreign key (`created_user`) references `users` (`id`) on delete restrict on update cascade;
 alter table `permission_user_detail`
-add constraint `permission_user_detail_updated_user_foreign` foreign key (`updated_user`) references `is_users` (`id`) on delete restrict on update cascade;
+add constraint `permission_user_detail_updated_user_foreign` foreign key (`updated_user`) references `users` (`id`) on delete restrict on update cascade;

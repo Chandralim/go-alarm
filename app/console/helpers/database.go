@@ -1,4 +1,4 @@
-package konstanta
+package helpers
 
 import (
 	"fmt"
@@ -7,8 +7,11 @@ import (
 	"path/filepath"
 	"strings"
 
-	_ "github.com/go-sql-driver/mysql"
+	// _ "github.com/go-sql-driver/mysql"
 	"github.com/spf13/viper"
+
+	// "gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 // var SQL *gorm.DB
@@ -27,15 +30,6 @@ func init() {
 
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatal(err)
-	}
-
-	db_conn := viper.GetString("DB_CONNECTION")
-	fmt.Println("viper:", viper.GetString("DB_CONNECTION"))
-
-	if db_conn == "mysql" {
-
-	} else if db_conn == "pgsql" {
-
 	}
 
 	connStr := getConnection(
@@ -69,6 +63,11 @@ func getConnection(db_conn string, db_host string, db_port string, db_database s
 		sql_conn = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", db_host, db_username, db_pass, db_database, db_port)
 	}
 	return sql_conn
+}
+
+// TruncateTable truncates the specified table in the database.
+func TruncateTable(db *gorm.DB, tableName string) error {
+	return db.Exec("TRUNCATE TABLE `" + tableName + "`").Error
 }
 
 // func initMySql() {

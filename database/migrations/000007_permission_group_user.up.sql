@@ -11,8 +11,8 @@ create table `permission_group_user` (
 alter table `permission_group_user`
 add constraint `permission_group_user_permission_group_id_foreign` foreign key (`permission_group_id`) references `permission_group` (`id`) on delete restrict on update cascade;
 alter table `permission_group_user`
-add constraint `permission_group_user_user_id_foreign` foreign key (`user_id`) references `is_users` (`id`) on delete restrict on update cascade;
+add constraint `permission_group_user_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete restrict on update cascade;
 alter table `permission_group_user`
-add constraint `permission_group_user_created_user_foreign` foreign key (`created_user`) references `is_users` (`id`) on delete restrict on update cascade;
+add constraint `permission_group_user_created_user_foreign` foreign key (`created_user`) references `users` (`id`) on delete restrict on update cascade;
 alter table `permission_group_user`
-add constraint `permission_group_user_updated_user_foreign` foreign key (`updated_user`) references `is_users` (`id`) on delete restrict on update cascade;
+add constraint `permission_group_user_updated_user_foreign` foreign key (`updated_user`) references `users` (`id`) on delete restrict on update cascade;
