@@ -10,12 +10,13 @@ import (
 	// _ "github.com/go-sql-driver/mysql"
 	"github.com/spf13/viper"
 
-	// "gorm.io/driver/mysql"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 // var SQL *gorm.DB
 var Connection *string
+var SQL *gorm.DB
 
 func init() {
 	getDir, _ := os.Getwd()
@@ -44,6 +45,19 @@ func init() {
 	fmt.Println("connStr:", connStr)
 
 	Connection = &connStr
+
+	if viper.GetString("DB_CONNECTION") == "mysql" {
+		sql, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	} else {
+		sql, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+
+	}
+
+	if err != nil {
+		fmt.Println("Failed to connect to the database:", err)
+		return err
+	}
+	SQL = sql
 }
 
 func getConnection(db_conn string, db_host string, db_port string, db_database string, db_username string, db_pass string) string {
