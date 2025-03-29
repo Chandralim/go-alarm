@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 	"log"
-	"mygo/app/console/helpers"
+	"mygo/app/helpers"
 	"mygo/app/models"
 
 	"gorm.io/driver/mysql"

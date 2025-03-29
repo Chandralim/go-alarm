@@ -2,7 +2,7 @@ package commands
 
 import (
 	"fmt"
-	"mygo/app/console/helpers"
+	"mygo/app/helpers"
 	"mygo/app/models"
 	"time"
 
